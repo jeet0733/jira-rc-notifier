@@ -10,7 +10,7 @@ Jira Rocket.Chat Notifier is a Rocket.Chat app that receives notifications from 
 - Sends DMs to mapped Rocket.Chat users (with deduplication)
 - **Admin-configurable custom user fields for participant extraction**
 - Optional user mapping configuration (Jira username → Rocket.Chat username)
-- **Option to skip internal comments (Jira Service Management Cloud only)**
+- **Option to skip internal comments (Jira Cloud only)**
 - Admin-configurable settings
 
 ## Installation
