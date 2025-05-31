@@ -1,0 +1,40 @@
+{
+    "id": "4190d196-2ed8-4198-bc3d-53402d6f82b3",
+    "version": "0.0.1",
+    "requiredApiVersion": "^1.10.0",
+    "iconFile": "icon.png",
+    "author": {
+        "name": "SS",
+        "homepage": "SS",
+        "support": "SS"
+    },
+    "name": "Jira Rocket.Chat Notifier",
+    "nameSlug": "jira-rc-notifier",
+    "classFile": "JiraNotifierApp.ts",
+    "description": "Receives Jira webhook notifications and automatically sends direct messages to relevant Rocket.Chat users (such as assignees, reporters, watchers, and custom participants) based on issue events. Supports admin-configurable user mapping and custom Jira user fields for flexible participant extraction.",
+    "api": {
+        "enabled": true,
+        "secured": false
+    },
+    "implements": [],
+    "permissions": [
+        {
+            "name": "user.read"
+        },
+        {
+            "name": "room.read"
+        },
+        {
+            "name": "room.write"
+        },
+        {
+            "name": "message.write"
+        },
+        {
+            "name": "server-setting.read"
+        },
+        {
+            "name": "api"
+        }
+    ]
+}

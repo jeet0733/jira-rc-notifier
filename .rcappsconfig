@@ -1,0 +1,16 @@
+{
+    "ignoredFiles": [
+        "**/README.md",
+        "**/package-lock.json",
+        "**/package.json",
+        "**/tslint.json",
+        "**/tsconfig.json",
+        "**/*.js",
+        "**/*.js.map",
+        "**/*.d.ts",
+        "**/*.spec.ts",
+        "**/*.test.ts",
+        "**/dist/**",
+        "**/.*"
+    ]
+}
