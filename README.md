@@ -24,6 +24,8 @@ A Rocket.Chat application that listens for Jira webhook events and sends direct 
 
 **Jira Rocket.Chat Notifier** receives Jira webhook notifications and delivers them as direct messages to Rocket.Chat users (assignees, reporters, watchers, approvers, and more). No more missed updates—stay on top of Jira activity directly in your chat workspace.
 
+![App Chat Screenshot](assets/Jira_RC_Notifier_Chat.png)
+
 ---
 
 ## Features
@@ -76,7 +78,7 @@ After installation, navigate to **Administration → Apps → Jira Rocket.Chat N
 
 ### Settings Examples
 
-![App Settings Screenshot](settings-screenshot.png)
+![App Settings Screenshot](assets/settings-screenshot.png)
 
 1. **User Mapping JSON**  
    - Map different Jira vs. Rocket.Chat usernames.  
@@ -114,7 +116,7 @@ After installation, navigate to **Administration → Apps → Jira Rocket.Chat N
      https://<ROCKETCHAT_URL>/api/apps/public/<APP_ID>/jira-webhook
      ```
      - Replace `<ROCKETCHAT_URL>` with your Rocket.Chat domain.  
-     - Replace `<APP_ID>` with your app’s ID (found in **Administration → Apps → Installed**).  
+     - Replace `<APP_ID>` with your app’s ID (found in **Private Apps → Jira Rocket.Chat Notifier → Details**).  
    - **Events:**  
      Select relevant issue events (Created, Updated, Commented, etc.).  
    - **Payload:**  

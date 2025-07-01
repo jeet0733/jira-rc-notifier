@@ -39,7 +39,7 @@ export function extractParticipants(fields: any, payload: any, customFieldsSetti
     // Dynamic custom user fields
     //    The admin can pass a comma‐separated list of field‐keys that might be:
     //      • plain user arrays/objects, e.g. [ {displayName, ...}, … ]
-    //      • OR “approval” objects, which themselves contain an array of { approver: {…} }.
+    //      • OR "approval" objects, which themselves contain an array of { approver: {…} }.
     //
     //    Example `customFieldsSetting`: 
     //      "customfield_10200,customfield_11902,approvers,customfield_12345"
@@ -51,7 +51,7 @@ export function extractParticipants(fields: any, payload: any, customFieldsSetti
 
             // If this field is an array:
             if (Array.isArray(value)) {
-                // Check if each item looks like an “approval” object (has `.approvers` array)
+                // Check if each item looks like an "approval" object (has .approvers array)
                 const firstItem = value[0];
                 if (firstItem && Array.isArray((firstItem as any).approvers)) {
                     // e.g. value = [ { approvers: [ { approver: {...} }, … ] }, … ]
@@ -65,13 +65,13 @@ export function extractParticipants(fields: any, payload: any, customFieldsSetti
                         }
                     }
                 } else {
-                    // Otherwise, assume it’s a plain array of user‐objects
+                    // Otherwise, assume it's a plain array of user-objects
                     participants = participants.concat(value as any[]);
                 }
             }
             // If this field is a single object:
             else if (value && typeof value === 'object') {
-                // Maybe it’s an “approval” object with array .approvers
+                // Maybe it's an "approval" object with array .approvers
                 if (Array.isArray((value as any).approvers)) {
                     for (const approverWrapper of (value as any).approvers) {
                         if (approverWrapper && (approverWrapper as any).approver) {
@@ -79,7 +79,7 @@ export function extractParticipants(fields: any, payload: any, customFieldsSetti
                         }
                     }
                 }
-                // Otherwise assume it’s one user‐object
+                // Otherwise assume it's one user-object
                 else {
                     participants.push(value);
                 }
@@ -90,7 +90,7 @@ export function extractParticipants(fields: any, payload: any, customFieldsSetti
     const unique = new Map<string, any>();
     for (const p of participants) {
         // console.log('Participants....................', p.name);
-        // Build a dedupe‐key; if accountId is missing we fall back to emailAddress or name.
+        // Build a dedupe-key; if accountId is missing we fall back to emailAddress or name.
         const key = p.accountId ?? p.emailAddress ?? p.name;
         if (key && !unique.has(key)) {
             unique.set(key, p);
@@ -198,7 +198,7 @@ export interface ISendDMOutput {
 }
 
 // Constants & Helpers for attachments
-const JIRA_LOGO = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAF8WlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNy4yLWMwMDAgNzkuMWI2NWE3OWI0LCAyMDIyLzA2LzEzLTIyOjAxOjAxICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdEV2dD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlRXZlbnQjIiB4bWxuczpkYz0iaHR0cDovL3B1cmwub3JnL2RjL2VsZW1lbnRzLzEuMS8iIHhtbG5zOnBob3Rvc2hvcD0iaHR0cDovL25zLmFkb2JlLmNvbS9waG90b3Nob3AvMS4wLyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgMjQuMCAoTWFjaW50b3NoKSIgeG1wOkNyZWF0ZURhdGU9IjIwMjQtMDMtMjdUMTU6NDc6NDctMDQ6MDAiIHhtcDpNZXRhZGF0YURhdGU9IjIwMjQtMDMtMjdUMTU6NDc6NDctMDQ6MDAiIHhtcDpNb2RpZnlEYXRlPSIyMDI0LTAzLTI3VDE1OjQ3OjQ3LTA0OjAwIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjY5ZTI5ZjAwLTRlZDAtNDI0ZC1hMzBkLTNlOGNmYjdiODVhYyIgeG1wTU06RG9jdW1lbnRJRD0iYWRvYmU6ZG9jaWQ6cGhvdG9zaG9wOjY5ZTI5ZjAwLTRlZDAtNDI0ZC1h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';
+const JIRA_LOGO = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAMAAADW3miqAAAA0lBMVEUAAADZNDF6iJqCjpl/i5eAi5eBjZiCjJeCjpqDjpqBjZkrf/wpfe3WNzbWOTjWODfWOTjTOTrVOjnWOjnVOjnWOjjWOTfWOTjWOTjWOzuAi5c9T2I+UWU+UWU+UWY/U2c+UmY/Umc8UGcsdtRRhcopffwsf/4ogPUpgPoogfIngfIngfJ5jKIyguoogPYpgPgngPQhgfotgP8pgfUgfP0ugv0tgP0vgv0tgf7VNjYsgfovgv8wgv8ugvwoffqCjppchcJkZZOCjpqBjJiBjZqXUHDk1yTnAAAARnRSTlMACAORKg1kFKDmXiMoIWY2eS20waqZRlGL+zEhQWeP/rXbDXjH/v81Pcjx/2urL1qDEZrXC9+uIb4SSf/zawKDBgRzeU4B9OegkQAAAbhJREFUeNrt0GmPmkAcx/Efjqzuityo6+22e3ijKBUQOef9v6UywcK026RP+2C/JJP8kw+ZA/9zP/zk3+ZyDW/V1JVVWRE+myDglPxcZA7UfvdPwylBfzYGsqxahirw5ug7tdIM2UMRVXSVcuaAj3OlLBWCQNnXNbQS+cVOe+DkBoF7KnfrQVU1s2v1YfZL1Aivwdk/Hd/eLh2wqCVDUby+1+t6hoIyypT7ejdSBz3jfi1vYAngVPDKTLzzXcf3dE3paZoi65YH8IqZd/d8vgZHzTB1U9fNQU8AeOUWxne2vmQfD5ope4nnlYIvAaTLHsApBhVQREcjVDWze9vvbE1b97/Gi8W4Qg+PJGdttmxtP+YADgdgOptNahSRHEUfezYQNrwvlz7G8/moRk8t8tAo0A5xGolpgez1evsymU7HSY3QitIY8U2MMhEM7VercDIrmnAIYpuIaLXbMcBQx7alKUPzpEbJhmQkJyl5ogz5zmrlfJsvFosJrVCSRSJykqNFNjTNT8t1kSONRi/1wVN2ojIxS6P8UKIOAP6dhs1fDdk7SaFth7sbuIZt8ltN/C3a4KP46lM/AZ74R/fik8COAAAAAElFTkSuQmCC';
 const DESC_MAX_LENGTH = 140;
 
 function stripDesc(str?: string): string {
@@ -236,6 +236,32 @@ function prepareAttachment(issue: any, user: any, text: string): IMessageAttachm
         timestamp: new Date(issue.fields.created),
         text,
     };
+}
+
+/**
+ * Builds the appropriate ticket URL for Service Desk or classic Jira tickets.
+ * Tries to find Service Desk portal URL, falls back to classic Jira browse URL.
+ */
+function buildTicketUrl(issue: any, baseJiraUrl: string): string {
+    // Check if this is a Service Desk project
+    if (issue.fields.project?.projectTypeKey === 'service_desk') {
+        // Look for any field that contains requestType with serviceDeskId
+        for (const [fieldName, fieldValue] of Object.entries(issue.fields)) {
+            if (
+                fieldValue &&
+                typeof fieldValue === 'object' &&
+                (fieldValue as any).requestType &&
+                typeof (fieldValue as any).requestType.serviceDeskId === 'string'
+            ) {
+                // Found Service Desk field with portal ID
+                const portalId = (fieldValue as any).requestType.serviceDeskId;
+                return `${baseJiraUrl}/servicedesk/customer/portal/${portalId}/${issue.key}`;
+            }
+        }
+    }
+    
+    // Fallback to classic Jira browse URL
+    return `${baseJiraUrl}/browse/${issue.key}`;
 }
 
 export async function sendDMs(
@@ -317,10 +343,11 @@ export async function sendDMs(
             const assignee = issue.fields.assignee || {};
             const actorName = data.user?.name;
             const assignedTo = assignee.name && assignee.name !== actorName
-                ? `, assigned to ${assignee.displayName}`
+                ? `, assigned to *${assignee.displayName}*`
                 : '';
             const priority = issue.fields.priority?.name.replace(/^\s*\d*\.\s*/, '') || '';
-            const summaryLink = `*[${issue.key}](${baseJiraUrl}/browse/${issue.key})* ${issue.fields.summary} _(${priority}${assignedTo})_`;
+            const ticketUrl = buildTicketUrl(issue, baseJiraUrl);
+            const summaryLink = `*[${issue.key}](${ticketUrl})* ${issue.fields.summary} _(${priority}${assignedTo})_`;
 
             // Select attachments based on event
             const attachments: IMessageAttachment[] = [];

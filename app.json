@@ -1,7 +1,7 @@
 {
     "id": "4190d196-2ed8-4198-bc3d-53402d6f82b3",
-    "version": "1.0.0",
-    "requiredApiVersion": "^1.10.0",
+    "version": "1.0.2",
+    "requiredApiVersion": "^1.15.0",
     "iconFile": "icon.png",
     "author": {
         "name": "SS",
@@ -16,6 +16,7 @@
         "enabled": true,
         "secured": false
     },
+    "documentationUrl": "Setup your Jira project to use below link as webhook url. Check App Settings page in RocketChat for further configuration.",
     "implements": [],
     "permissions": [
         {
